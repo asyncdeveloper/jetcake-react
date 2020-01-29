@@ -14,11 +14,10 @@ const style = {
 
 function Footer({ children }) {
     return (
-      <div>
         <div style={style}>
+            <p>Copyright All rights reserved.</p>
             { children }
         </div>
-      </div>
     )
 }
 
