@@ -1,27 +1,27 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Header from "./component/Header";
-import HomePage from "./component/HomePage";
-import ProfilePage from "./component/ProfilePage";
-import Footer from "./component/Footer";
-import SignInAndSignUpPage from "./component/SignInAndSignUpPage";
-import EditProfilePage from "./component/EditProfilePage";
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-        <BrowserRouter>
-            <Header />
-            <Switch>
-              <Route exact path='/' component={HomePage} />
-              <Route path='/login' component={SignInAndSignUpPage} />
-              <Route path='/profile' component={ProfilePage} />
-              <Route path='/edit-profile' component={EditProfilePage} />
-            </Switch>
-            <Footer />
-        </BrowserRouter>
+import routes from "./routes";
+
+export default () => (
+  <Router>
+    <div>
+      {routes.map((route, index) => {
+        return (
+          <Route
+            key={index}
+            path={route.path}
+            exact={route.exact}
+            component={ props => {
+              return (
+                <route.layout {...props}>
+                  <route.component {...props} />
+                </route.layout>
+              );
+            }}
+          />
+        );
+      })}
     </div>
-  );
-}
-
-export default App;
+  </Router>
+);
