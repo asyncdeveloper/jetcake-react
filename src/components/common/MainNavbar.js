@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from "shards-react";
 
 import routes from "../../routes";
+import { connect } from "react-redux";
+import { signOut } from "../../redux/auth/auth.actions";
 
-export default class MainNavbar extends Component {
+class MainNavbar extends Component {
     constructor(props) {
         super(props);
 
@@ -18,7 +20,25 @@ export default class MainNavbar extends Component {
         });
     };
 
+    handleLogout = () => {
+        this.props.signOut();
+    };
+
     render() {
+        const { isLoggedIn } = this.props;
+        const headerLinks = routes.map((item, idx) => {
+            if (!(item.hideOnLogin && isLoggedIn)) {
+                //Hide certain routes for loggedIn users
+                return (
+                    <NavItem key={idx}>
+                        <NavLink href={item.path}>
+                            {item.alias}
+                        </NavLink>
+                    </NavItem>
+                )
+            }
+        });
+
         return (
             <Navbar type="dark" theme="primary" expand="md">
                 <NavbarBrand href="#"> JetCake </NavbarBrand>
@@ -27,18 +47,26 @@ export default class MainNavbar extends Component {
 
                 <Collapse open={this.state.collapseOpen} navbar>
                     <Nav navbar>
-                        {
-                         routes.map((item, idx) => (
-                             <NavItem key={idx}>
-                                 <NavLink href={item.path}>
-                                     {item.alias}
-                                 </NavLink>
-                             </NavItem>
-                         ))
-                        }
+                        { headerLinks }
+
+                        { isLoggedIn ? (<NavLink onClick={this.handleLogout}> Logout </NavLink>) : null }
                     </Nav>
                 </Collapse>
             </Navbar>
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: !!state.firebase.auth.uid
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signOut: () => dispatch(signOut())
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainNavbar);

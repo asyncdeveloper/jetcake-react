@@ -24,13 +24,15 @@ export default [
     path: "/login",
     layout: DefaultLayout,
     component: LoginPage,
-    alias : "Login"
+    alias : "Login",
+    hideOnLogin: true
   },
   {
     path: "/register",
     layout: DefaultLayout,
     component: RegisterPage,
-    alias : "Sign Up"
+    alias : "Sign Up",
+    hideOnLogin: true
   }
 
 ];
