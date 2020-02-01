@@ -1,4 +1,12 @@
-import { SIGN_OUT_FAILURE, SIGN_OUT_SUCCESS, SIGNIN_FAILURE, SIGNIN_IN_PROGRESS, SIGNIN_SUCCESS } from "./auth.types";
+import {
+    AUTH_PROGRESS,
+    SIGN_OUT_FAILURE,
+    SIGN_OUT_SUCCESS,
+    SIGNIN_FAILURE,
+    SIGNIN_SUCCESS,
+    SIGNUP_FAILURE,
+    SIGNUP_SUCCESS
+} from "./auth.types";
 
 const initState = {
     authError: null,
@@ -8,7 +16,7 @@ const initState = {
 
 const authReducer = (state = initState, action) => {
     switch(action.type) {
-        case SIGNIN_IN_PROGRESS:
+        case AUTH_PROGRESS:
             return { ...state, authError: null, isLoading: true };
         case SIGNIN_SUCCESS:
             return { ...state, authError: null, isLoading: false };
@@ -17,7 +25,11 @@ const authReducer = (state = initState, action) => {
         case SIGN_OUT_SUCCESS:
             return { ...state, errorMessage: null };
         case SIGN_OUT_FAILURE:
-            return { ...state,  errorMessage: action.message };
+            return { ...state, errorMessage: action.message };
+        case SIGNUP_SUCCESS:
+            return { ...state, authError: null, isLoading: false };
+        case SIGNUP_FAILURE:
+            return { ...state, authError: action.message, isLoading: false };
         default:
             return state;
     }
