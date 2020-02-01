@@ -19,7 +19,8 @@ class RegisterPage extends Component {
             dateOfBirth: '',
             question1: '',
             question2: '',
-            question3: ''
+            question3: '',
+            image: ''
         };
     }
 
@@ -31,6 +32,13 @@ class RegisterPage extends Component {
     handleChange = (e) => {
         const { id, value } = e.target;
         this.setState({ [id]: value });
+    };
+
+    handleFileChange = (e) => {
+        if (e.target.files[0]) {
+            const image = e.target.files[0];
+            this.setState({ image });
+        }
     };
 
     render() {
@@ -71,10 +79,11 @@ class RegisterPage extends Component {
                                 <FormInput type="date" id="dateOfBirth" value={dateOfBirth} onChange={this.handleChange}
                                    required />
                             </FormGroup>
-                            {/*<FormGroup>*/}
-                            {/*    <label htmlFor="#photo">Photo</label>*/}
-                            {/*    <FormInput type="file" id="#photo" inputProps={{accept: 'image/*'}} />*/}
-                            {/*</FormGroup>*/}
+                            <FormGroup>
+                                <label htmlFor="photo">Photo</label>
+                                <FormInput type="file" id="photo" inputprops={{accept: 'image/*'}} onChange={this.handleFileChange}
+                                   required />
+                            </FormGroup>
                             <FormGroup>
                                 <label htmlFor="question1">
                                     Security Question 1 : What is your favourite sports ?
