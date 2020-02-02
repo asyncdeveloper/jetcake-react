@@ -33,10 +33,10 @@ class UserProfileDetails extends Component {
   render() {
     const { user, auth, isLoading, successMessage } = this.props;
 
-    if (! auth.uid) return <Redirect to='/' />;
+    if (! auth.uid) return <Redirect to='/login' />;
 
     if(isEmpty(user))
-      return 'Is Loading';
+      return <SpinnerButton />;
 
     return(
         <Fragment>
@@ -44,7 +44,7 @@ class UserProfileDetails extends Component {
             {  successMessage ? (<Alert theme="success">{successMessage}</Alert>) : null }
             <CardHeader className="border-bottom text-center">
               <div className="mb-3 mx-auto">
-                <img style={{ maxHeight: "300px" }} src={user.imageUrl}  alt="User profile image" />
+                <img style={{ maxHeight: "300px", maxWidth: "100%" }} src={user.imageUrl}  alt="User profile image" />
               </div>
             </CardHeader>
             <ListGroup flush>

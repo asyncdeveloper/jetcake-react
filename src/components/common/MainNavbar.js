@@ -37,11 +37,12 @@ class MainNavbar extends Component {
                     </NavItem>
                 )
             }
+            return null;
         });
 
         return (
             <Navbar type="dark" theme="primary" expand="md">
-                <NavbarBrand href="#"> JetCake </NavbarBrand>
+                <NavbarBrand href="/"> JetCake </NavbarBrand>
 
                 <NavbarToggler onClick={this.toggleNavbar} />
 

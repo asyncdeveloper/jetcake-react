@@ -50,7 +50,7 @@ class RegisterPage extends Component {
         return(
             <Container fluid className="px-4 pb-4">
                 <Row>
-                    <Col lg={{size: 4, offset: 4}} md={{size: 4, offset: 4}} sm="12" >
+                    <Col lg={{ size: 8, offset: 2 }}>
                         { authError ? (<Alert theme="danger">{authError}</Alert>) : null }
 
                         <Form onSubmit={this.handleSubmit}>

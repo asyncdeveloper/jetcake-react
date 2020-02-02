@@ -1,5 +1,5 @@
-import React from "react";
-import { Alert, Col, Container, Row } from "shards-react";
+import React, { Fragment } from "react";
+import { Alert, Col } from "shards-react";
 
 import MainNavbar from "../components/common/MainNavbar";
 import Footer from "../components/common/Footer";
@@ -7,21 +7,17 @@ import Hero from "../components/common/HeroImage";
 import { connect } from "react-redux";
 
 export const DefaultLayout = ({ children, errorMessage }) => (
-
-  <Container fluid>
-    <Row>
-      <Col className="main-content p-0" tag="main">
+    <Fragment>
         <MainNavbar />
 
         <Hero number={100} />
 
-        <Col> { errorMessage ? (<Alert theme="danger">{errorMessage}</Alert>) : null } </Col>
+        { errorMessage ? (<Col lg={{ size: 8, offset: 2 }}><Alert theme="danger">{errorMessage}</Alert></Col>) : null }
 
         {children}
-      </Col>
-    </Row>
-    <Footer />
-  </Container>
+
+        <Footer />
+    </Fragment>
 );
 
 const mapStateToProps = (state) => {
