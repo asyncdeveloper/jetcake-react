@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.js": "/jetcake-react/static/js/main.76c6864b.chunk.js",
+    "main.js.map": "/jetcake-react/static/js/main.76c6864b.chunk.js.map",
+    "runtime-main.js": "/jetcake-react/static/js/runtime-main.0646478e.js",
+    "runtime-main.js.map": "/jetcake-react/static/js/runtime-main.0646478e.js.map",
+    "static/js/2.7b8681db.chunk.js": "/jetcake-react/static/js/2.7b8681db.chunk.js",
+    "static/js/2.7b8681db.chunk.js.map": "/jetcake-react/static/js/2.7b8681db.chunk.js.map",
+    "index.html": "/jetcake-react/index.html",
+    "precache-manifest.70e69b6fbec2323fac16fe26c7bdf762.js": "/jetcake-react/precache-manifest.70e69b6fbec2323fac16fe26c7bdf762.js",
+    "service-worker.js": "/jetcake-react/service-worker.js",
+    "static/js/2.7b8681db.chunk.js.LICENSE": "/jetcake-react/static/js/2.7b8681db.chunk.js.LICENSE",
+    "static/media/hero-image.jpg": "/jetcake-react/static/media/hero-image.7e056773.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0646478e.js",
+    "static/js/2.7b8681db.chunk.js",
+    "static/js/main.76c6864b.chunk.js"
+  ]
+}
