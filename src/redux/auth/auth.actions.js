@@ -5,7 +5,9 @@ import {
     SIGNIN_FAILURE,
     SIGNIN_SUCCESS,
     SIGNUP_FAILURE,
-    SIGNUP_SUCCESS
+    SIGNUP_SUCCESS,
+    UPDATE_FAILURE,
+    UPDATE_SUCCESS
 } from "./auth.types";
 import { storage } from "../../config/firebase";
 
@@ -75,6 +77,38 @@ export const signUp = (newUser) => {
             dispatch({ type: SIGNUP_FAILURE, message: e.message });
         }
 
+    }
+};
+
+export const updateUser = (user) => {
+    return async (dispatch, getState, {getFirebase, getFirestore}) => {
+        dispatch(authProgress());
+
+        const state = getState();
+        const userId = state.firebase.auth.uid;
+
+        const firestore = getFirestore();
+
+        try {
+            let imageUrl = user.imageUrl;
+            if (user.image) {
+                imageUrl = await uploadImage(user.image);
+            }
+
+            return firestore.collection('users').doc(userId).update({
+                address: user.address,
+                phoneNumber: user.phoneNumber,
+                dateOfBirth: user.dateOfBirth,
+                question1: user.question1,
+                question2: user.question2,
+                question3: user.question3,
+                imageUrl
+            }).then(() => {
+                dispatch({ type: UPDATE_SUCCESS, message: 'Updated Successful' });
+            }) ;
+        }catch (e) {
+            dispatch({ type: UPDATE_FAILURE, message: e.message });
+        }
     }
 };
 

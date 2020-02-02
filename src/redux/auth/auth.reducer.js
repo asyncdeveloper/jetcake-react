@@ -5,13 +5,16 @@ import {
     SIGNIN_FAILURE,
     SIGNIN_SUCCESS,
     SIGNUP_FAILURE,
-    SIGNUP_SUCCESS
+    SIGNUP_SUCCESS,
+    UPDATE_FAILURE,
+    UPDATE_SUCCESS
 } from "./auth.types";
 
 const initState = {
     authError: null,
     isLoading: false,
     errorMessage: null,
+    successMessage: null,
 };
 
 const authReducer = (state = initState, action) => {
@@ -29,6 +32,10 @@ const authReducer = (state = initState, action) => {
         case SIGNUP_SUCCESS:
             return { ...state, authError: null, isLoading: false };
         case SIGNUP_FAILURE:
+            return { ...state, authError: action.message, isLoading: false };
+        case UPDATE_SUCCESS:
+            return { ...state, authError: null, isLoading: false, successMessage: action.message };
+        case UPDATE_FAILURE:
             return { ...state, authError: action.message, isLoading: false };
         default:
             return state;
